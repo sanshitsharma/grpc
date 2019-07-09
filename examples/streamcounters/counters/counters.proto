@@ -1,0 +1,17 @@
+syntax = "proto3";
+package servicestatus;
+
+import "google/api/annotations.proto";
+
+service Status {
+    rpc GetCounters(CounterReq) returns (stream CounterResp) {}
+}
+
+message CounterReq{
+    string client_id = 1;
+}
+
+message CounterResp{
+    bool  ok = 1;
+    int32 counter = 2;
+}
