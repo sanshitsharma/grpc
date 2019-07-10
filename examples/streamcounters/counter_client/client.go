@@ -37,7 +37,7 @@ func main() {
 	}
 	stream, err := client.GetCounters(ctx, req1)
 	if err != nil {
-		log.Println(`Expected Failure: %v.GetServiceState(_) = _, %v`, client, err)
+		log.Fatalf(`%v.GetServiceState(_) = _, %v`, client, err)
 	}
 	log.Printf(`req: %v err: %v`, req1, err)
 	for {
@@ -46,7 +46,8 @@ func main() {
 			break
 		}
 		if err != nil {
-			log.Fatalf(`T1 stream %v.GetServiceState(_) = _, %v`, client, err)
+			log.Printf(`T1 stream Expected error. %v.GetServiceState(_) = _, %v`, client, err)
+			break
 		}
 
 		log.Println(resp)
